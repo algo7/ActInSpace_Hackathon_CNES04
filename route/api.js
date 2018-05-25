@@ -64,6 +64,7 @@ router.post('/admin', (req, res) => {
         } else {
             if (result.status !== 'OK') {
                 console.log('Map Failed to Load');
+                console.log(result.status);
             } else {
                 let place_id = result.results[0].place_id; //Get the Place ID
                 console.log('ID:' + place_id);
@@ -135,6 +136,7 @@ router.post('/user', (req, res) => {
             console.log('Error!');
         } else {
             if (result.status !== 'OK') {
+                console.log(result.status);
                 console.log('Map Failed to Load');
             } else {
                 let place_id = result.results[0].place_id; //Get the Place ID
@@ -196,6 +198,7 @@ router.post('/user', (req, res) => {
                                     } else {
                                         console.log('Error');
                                         // 
+
                                         res.send(200, {
                                             "result": false
                                         })
