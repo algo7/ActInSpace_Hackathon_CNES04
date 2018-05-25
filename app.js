@@ -18,6 +18,9 @@ const googleconfig = { //GoogleAPI Config
     secure: true
 };
 
+//DBSchema
+const DBSchema = require('./config/Schema');
+
 //Initialize Mogoose
 mongoose.connect(PDBPath);
 mongoose.connection
@@ -54,8 +57,8 @@ server.get('/nogeo', (req, res) => {
 //Post Routes
 server.post('/', (req, res) => {
     //Def. the Var for the Coordinate
-    let lat = req.body.latitude;
-    let long = req.body.longitude;
+    const lat = req.body.latitude;
+    const long = req.body.longitude;
     //Log the Coordinate
     console.log('Latitude:' + lat);
     console.log('Longitude:' + long);
@@ -92,11 +95,13 @@ server.post('/', (req, res) => {
                         let Objlength = Object.keys(PDetail).length //Get the Object Length
                         let adminlv1 = 'administrative_area_level_1'; //Def. the String for Comparison
                         let country = 'country'; //Def. the String for Comparison
+                        let FirstLvAdmin = [];
+                        let Country = [];
 
                         //Get the Name of First Lv. Admin
                         for (let i = 0; i < Objlength; ++i) {
                             if (PDetail[i].types[0] == adminlv1) {
-                                console.log(PDetail[i].long_name);
+                                FirstLvAdmin.push(PDetail[i].long_name);
                                 break;
                             }
                         };
@@ -104,15 +109,27 @@ server.post('/', (req, res) => {
                         //Get the Name of the Country
                         for (let i = 0; i < Objlength; ++i) {
                             if (PDetail[i].types[0] == country) {
-                                console.log(PDetail[i].long_name);
+                                Country.push(PDetail[i].long_name);
                                 break;
                             }
                         };
+                        console.log(lat);
+                        console.log(long);
+                        console.log(FirstLvAdmin[0]);
+                        console.log(Country[0]);
+                        const DBIsntance = new DBSchema({
+                            Latitude: lat,
+                            Longitude: long,
+                            FirstLvAdmin: FirstLvAdmin[0],
+                            Country: Country[0]
+                        });
+                        DBIsntance.save();
                     }
                 });
             }
         }
     });
+
 });
 
 
@@ -134,3 +151,5 @@ server.listen(port, () => {
 //     //     console.log('yes');
 //     // }
 //let gurl = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4&key=xxxxxxxx';
+//console.log(PDetail[i].long_name);
+//console.log(PDetail[i].long_name);

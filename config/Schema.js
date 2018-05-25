@@ -8,6 +8,8 @@ const Schema = mongoose.Schema;
 const DBSchema = new Schema({
     Latitude: String,
     Longitude: String,
+    FirstLvAdmin: String,
+    Country: String
 });
 
 //Create the Model
