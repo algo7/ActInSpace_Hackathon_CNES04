@@ -24,6 +24,7 @@ mongoose.connection
 
 //Initialize Express
 const server = express();
+server.use(express.static(path.join(__dirname, "public")));
 server.set('view engine', 'ejs');
 server.set('views', path.join(__dirname, 'views'));
 
@@ -35,15 +36,15 @@ server.use(
 );
 
 //Load Routes
-const api_home = require('./routes/home');
+const api = require('./route/api');
 
 //Use Routes
-server.use('/api', api_home);
+server.use('/api', api);
 
 
 //Root Route
 server.get('/', (req, res) => {
-    res.redirect('/api/home');
+    res.redirect('/api/admin');
 });
 
 //GET Error Handling
