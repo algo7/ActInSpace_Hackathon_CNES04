@@ -1,0 +1,29 @@
+{
+  "name": "actinspace_hackathon_cnes04",
+  "version": "1.0.0",
+  "description": "ActInSpace Hackathon CNES04 Challenge",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexlo0612/ActInSpace_Hackathon_CNES04.git"
+  },
+  "keywords": [
+    "actinspace"
+  ],
+  "author": "Alex, Pushin, Crystal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexlo0612/ActInSpace_Hackathon_CNES04/issues"
+  },
+  "homepage": "https://github.com/alexlo0612/ActInSpace_Hackathon_CNES04#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "googlemaps": "^1.12.0",
+    "mongoose": "^5.1.2",
+    "path": "^0.12.7"
+  }
+}
