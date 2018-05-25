@@ -9,11 +9,12 @@ const DBSchema = new Schema({
     Latitude: String,
     Longitude: String,
     FirstLvAdmin: String,
-    Country: String
+    Country: String,
+    Time: Date
 });
 
 //Create the Model
-const Position = mongoose.model('Position', DBSchema);
+const PT = mongoose.model('PT', DBSchema); //Should be PVT (Position, velocity, and time). But we only make use of two.
 
 //Export the Module
-module.exports = Position;
+module.exports = PT;

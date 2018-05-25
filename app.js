@@ -121,7 +121,8 @@ server.post('/', (req, res) => {
                             Latitude: lat,
                             Longitude: long,
                             FirstLvAdmin: FirstLvAdmin[0],
-                            Country: Country[0]
+                            Country: Country[0],
+                            Time: Date.now()
                         });
                         DBIsntance.save();
                     }
