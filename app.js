@@ -57,8 +57,8 @@ server.post('/', (req, res) => {
     let lat = req.body.latitude;
     let long = req.body.longitude;
     //Log the Coordinate
-    console.log('Longitude:' + long);
     console.log('Latitude:' + lat);
+    console.log('Longitude:' + long);
     res.send('Good');
     //Initiate Google ReverseGeoCode Lib
     const gmAPI = new GoogleMapsAPI(googleconfig);
@@ -78,10 +78,38 @@ server.post('/', (req, res) => {
                 console.log('Map Failed to Load');
             } else {
                 let place_id = result.results[0].place_id; //Get the Place ID
-                console.log(place_id);
-                //Getting Street Detail
+                console.log('ID:' + place_id);
+                ///Getting Street Detail
+                //Google URL
                 let gurl = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place_id}&key=${Cred.GAPI}`
+                //Making Request
+                request(encodeURI(gurl), (err, response, body) => {
+                    if (err) {
+                        console.log('Error!');
+                    } else {
+                        let PDetailRaw = JSON.parse(body); //Parse the body
+                        let PDetail = PDetailRaw.result.address_components; //Get the Addr. Component
+                        let Objlength = Object.keys(PDetail).length //Get the Object Length
+                        let adminlv1 = 'administrative_area_level_1'; //Def. the String for Comparison
+                        let country = 'country'; //Def. the String for Comparison
 
+                        //Get the Name of First Lv. Admin
+                        for (let i = 0; i < Objlength; ++i) {
+                            if (PDetail[i].types[0] == adminlv1) {
+                                console.log(PDetail[i].long_name);
+                                break;
+                            }
+                        };
+
+                        //Get the Name of the Country
+                        for (let i = 0; i < Objlength; ++i) {
+                            if (PDetail[i].types[0] == country) {
+                                console.log(PDetail[i].long_name);
+                                break;
+                            }
+                        };
+                    }
+                });
             }
         }
     });
@@ -92,3 +120,17 @@ server.post('/', (req, res) => {
 server.listen(port, () => {
     console.log(`Server is now listening on ${port}`);
 });
+
+
+
+
+// [ 'administrative_area_level_1', 'political' ]
+// [ 'country', 'political' ]
+//console.log(PDetailRaw.result.address_components);
+// console.log(PDetail[0].types);
+// console.log(PDetail[1].types);
+// console.log(PDetail[2].types);
+// if (PDetail[1].types[0] == adminlv1) {
+//     //     console.log('yes');
+//     // }
+//let gurl = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4&key=xxxxxxxx';
