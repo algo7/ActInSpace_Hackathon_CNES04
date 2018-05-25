@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Form to be Auto Submitted -->
+    <form id="geoform" action="/" method="POST" hidden>
+        <input type="text" id="longitude" name="longitude" value="" />
+        <<input type="text" id="latitude" name="latitude" value="" />
+        <input type="submit" />
+    </form>
+
+    <!-- JS-->
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition); //Get Current Position and Pass it on to the showPosition function
+            } else { //Error Handling
+                window.location.replace("/nogeo");
+            }
+        }
+
+        function showPosition(position) {
+
+            document.getElementById('longitude').value = position.coords.longitude; //Get Longitude
+            document.getElementById('latitude').value = position.coords.latitude; //Get Latitude
+
+            document.getElementById("geoform").submit(); //Submit the Form After the Coordinate is Obtained
+        }
+        window.onload = getLocation(); //Run the GetLocation Function on Page Load
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
