@@ -81,6 +81,7 @@ server.post('/', (req, res) => {
                 console.log(place_id);
                 //Getting Street Detail
                 let gurl = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place_id}&key=${Cred.GAPI}`
+
             }
         }
     });
