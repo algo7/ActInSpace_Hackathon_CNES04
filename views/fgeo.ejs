@@ -4,7 +4,7 @@
 <head>
 
     <!-- Form to be Auto Submitted -->
-    <form id="geoform" action="/" method="POST" hidden>
+    <form id="geoform" action="/api/admin" method="POST" hidden>
         <input type="text" id="longitude" name="longitude" value="" />
         <<input type="text" id="latitude" name="latitude" value="" />
         <input type="submit" />
@@ -16,7 +16,7 @@
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition); //Get Current Position and Pass it on to the showPosition function
             } else { //Error Handling
-                window.location.replace("/nogeo");
+                window.location.replace("/api/nogeo");
             }
         }
 

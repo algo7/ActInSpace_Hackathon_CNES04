@@ -10,16 +10,6 @@ const GoogleMapsAPI = require("googlemaps");
 const port = 2000; //Server Port
 const Cred = require('./config/cred'); //Import Credentials
 const PDBPath = JSON.parse(JSON.stringify(Cred.Path)); //Get DB Path
-const GAPI = JSON.parse(JSON.stringify(Cred.GAPI)); //Get Google Map API
-const googleconfig = { //GoogleAPI Config
-    key: Cred.GAPI,
-    stagger_time: 1000,
-    encode_polylines: true,
-    secure: true
-};
-
-//DBSchema
-const DBSchema = require('./config/Schema');
 
 //Initialize Mogoose
 mongoose.connect(PDBPath);
@@ -44,93 +34,26 @@ server.use(
     })
 );
 
-//Get Routes
+//Load Routes
+const api_home = require('./routes/home');
+
+//Use Routes
+server.use('/api', api_home);
+
+
+//Root Route
 server.get('/', (req, res) => {
-    console.log('Landing Page');
-    res.render('fgeo', {});
+    res.redirect('/api/home');
 });
 
-server.get('/nogeo', (req, res) => {
-    res.send('Sorry Mate');
+//GET Error Handling
+server.get('*', (req, res) => {
+    res.send('Page Not Found!');
 });
 
-//Post Routes
-server.post('/', (req, res) => {
-    //Def. the Var for the Coordinate
-    const lat = req.body.latitude;
-    const long = req.body.longitude;
-    //Log the Coordinate
-    console.log('Latitude:' + lat);
-    console.log('Longitude:' + long);
-    res.send('Good');
-    //Initiate Google ReverseGeoCode Lib
-    const gmAPI = new GoogleMapsAPI(googleconfig);
-    //Set Params
-    const reverseGeoCodeParams = {
-        latlng: `${lat},${long}`,
-        result_type: "postal_code",
-        language: "en",
-        location_type: "APPROXIMATE"
-    };
-    //Perform ReverseGeocoding
-    gmAPI.reverseGeocode(reverseGeoCodeParams, (err, result) => {
-        if (err) {
-            console.log('Error!');
-        } else {
-            if (result.status !== "OK") {
-                console.log('Map Failed to Load');
-            } else {
-                let place_id = result.results[0].place_id; //Get the Place ID
-                console.log('ID:' + place_id);
-                ///Getting Street Detail
-                //Google URL
-                let gurl = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place_id}&key=${Cred.GAPI}`
-                //Making Request
-                request(encodeURI(gurl), (err, response, body) => {
-                    if (err) {
-                        console.log('Error!');
-                    } else {
-                        let PDetailRaw = JSON.parse(body); //Parse the body
-                        let PDetail = PDetailRaw.result.address_components; //Get the Addr. Component
-                        let Objlength = Object.keys(PDetail).length //Get the Object Length
-                        let adminlv1 = 'administrative_area_level_1'; //Def. the String for Comparison
-                        let country = 'country'; //Def. the String for Comparison
-                        let FirstLvAdmin = [];
-                        let Country = [];
-
-                        //Get the Name of First Lv. Admin
-                        for (let i = 0; i < Objlength; ++i) {
-                            if (PDetail[i].types[0] == adminlv1) {
-                                FirstLvAdmin.push(PDetail[i].long_name);
-                                break;
-                            }
-                        };
-
-                        //Get the Name of the Country
-                        for (let i = 0; i < Objlength; ++i) {
-                            if (PDetail[i].types[0] == country) {
-                                Country.push(PDetail[i].long_name);
-                                break;
-                            }
-                        };
-                        console.log(lat);
-                        console.log(long);
-                        console.log(FirstLvAdmin[0]);
-                        console.log(Country[0]);
-                        const DBIsntance = new DBSchema({
-                            Latitude: lat,
-                            Longitude: long,
-                            FirstLvAdmin: FirstLvAdmin[0],
-                            Country: Country[0],
-                            Time: Date.now()
-                        });
-                        DBIsntance.save();
-                    }
-                });
-            }
-        }
-    });
-
+//POST Error Handling
+server.post('*', (req, res) => {
+    res.send('Internal Error!');
 });
 
 
@@ -138,6 +61,9 @@ server.post('/', (req, res) => {
 server.listen(port, () => {
     console.log(`Server is now listening on ${port}`);
 });
+
+
+
 
 
 
