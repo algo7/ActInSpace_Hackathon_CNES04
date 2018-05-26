@@ -33,7 +33,6 @@ router.get('/nogeo', (req, res) => {
 
 //User Get Route
 router.get('/user', (req, res) => {
-    console.log('asd');
     res.render('fgeo1', {});
     //res.sendfile('public/index.html');
 });
@@ -127,7 +126,6 @@ router.post('/admin', (req, res) => {
 
 //User POST Route
 router.post('/user', (req, res) => {
-    console.log('fuxca');
     const lat = req.body.latitude;
     const long = req.body.longitude;
     const gmAPI = new GoogleMapsAPI(googleconfig);
@@ -202,6 +200,9 @@ router.post('/user', (req, res) => {
                                     console.log('Error');
                                     res.send('You are where u are');
                                 }
+                            }).catch((err) => {
+                                console.log('Error');
+                                res.send('You are where u are');
                             });
                         });
                     }
