@@ -1,0 +1,58 @@
+@import "mixins/mixins"
+@import "variables/variables"
+
+body,html
+  font-family: $baseFont
+  color: black
+  overflow-x: hidden
+
+// Front hero section
+#hero
+  background: url('../images/background.jpg')center center no-repeat
+  background-size: cover
+  display: flex
+  align-items: center
+  width: 1410px
+  height: 580px
+
+// The about movie section
+section#about-movie
+  background: black
+  width: 1410px
+  height: 600px
+  
+.about-movie-h1
+  +baseFont(25px, white, medium, center)
+  position: relative
+  top: 150px
+.about-movie-p
+  +baseFont(20px, white, medium, none)
+  word-wrap: break-word
+  margin-top: 200px
+
+// Video Trailer Section
+#trailer-with-video
+  background: url('../images/background-trailer.jpg')center center no-repeat
+  background-size: cover
+  display: flex
+  align-items: center
+  width: 1410px
+  height: 580px
+
+// Recommended Movies Section
+#recommendation
+  background: black
+  +baseFont(16px, white, medium, none)
+  padding-top: 100px
+  padding-bottom: 100px
+
+// Footer Component Styling
+.this-footer
+  padding: 2.5rem 0
+  color: #999
+  text-align: center
+  background-color: #f9f9f9
+  border-top: .05rem solid #e5e5e5
+
+.this-footer p:last-child
+  margin-bottom: 0

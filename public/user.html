@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Actinspace</title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://vjs.zencdn.net/7.0.3/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="node_modules/video-react/dist/video-react.css">
+  <!-- Form to be Auto Submitted -->
+  <form id="geoform" action="/api/admin" method="POST" hidden>
+    <input type="text" id="longitude" name="longitude" value="" />
+    <<input type="text" id="latitude" name="latitude" value="" />
+    <input type="submit" />
+  </form>
+
+  <!-- JS-->
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition); //Get Current Position and Pass it on to the showPosition function
+      } else { //Error Handling
+        window.location.replace("/api/nogeo");
+      }
+    }
+
+    function showPosition(position) {
+
+      document.getElementById('longitude').value = position.coords.longitude; //Get Longitude
+      document.getElementById('latitude').value = position.coords.latitude; //Get Latitude
+
+      document.getElementById("geoform").submit(); //Submit the Form After the Coordinate is Obtained
+    }
+    window.onload = getLocation(); //Run the GetLocation Function on Page Load
+  </script>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary top-nav">
+    <a class="navbar-brand" href="#" draggable="false">
+      <img class="logo-navbar" src="images/logo.png" alt="" draggable="false">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">New</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Popular</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Cinema</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0 search-component">
+        <input class="search-rounded form-control mr-sm-2" type="text" placeholder="Search for movies">
+        <i class="fa fa-search search-icon" style="color: white;"></i>
+
+      </form>
+      <div class="button-menu-uknow">
+        <button type="button" class="btn btn-primary btn-signup">Signup</button>
+        <a href="#" class="login-link">Login</a>
+        <img src="images/user_icon.png" class="user-icon-menu" alt="">
+      </div>
+    </div>
+  </nav>
+  <section id="hero">
+    <div class="container">
+      <div class="video-container">
+        <!-- <%if(error != true){ %> -->
+        <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="820" height="523" poster="images/placeholder_video.jpg"
+          data-setup="{}">
+          <source src="video/video.mp4" type='video/mp4'>
+          <source src="video/video.webm" type='video/webm'>
+          <p class="vjs-no-js">
+            Please make sure that your browser supports HTML5 in order to view this video. ERROR CODE 1.
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+        </video>
+        <!-- <% } %>
+        <%else{ %>
+        <center style="background: url('https://images.pexels.com/photos/8395/lights-night-unsharp-blured.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')center center no-repeat; color: white; height: 100%;">
+          <div class="anths" style="position: relative; top: 50px;">
+            <img src="https://i.imgur.com/0jodXzF.png" style="width: 200px; height: 200px;" alt="" draggable="false">
+          <h1 style="color: white; margin-top: 10px;">You are where you are</h1>
+          <p class="lead" style="margin-top: 180px;">This video is only available from Taiwan. Please don't fool around with any VPN.</p>
+          </div>
+        </center> -->
+        <!-- <% } %> -->
+
+
+      </div>
+    </div>
+  </section>
+  <section id="about-movie">
+    <div class="container">
+      <h1 class="about-movie-h1">Discover the Unknown</h1>
+      <div class="row">
+        <div class="col">
+          <img src="images/person_front.png" class="person-front" alt="">
+        </div>
+        <div class="col">
+
+          <p class="about-movie-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate reprehenderit quos similique praesentium repudiandae
+            vel tempore dolor veritatis, necessitatibus qui ut perspiciatis ipsa aperiam aliquam deleniti labore soluta quo
+            hic!
+          </p>
+        </div>
+        <div class="col width-for-span">
+          <span>Stars:
+            <b>Ryan Chenz, Seth Goodwin, Mason Brett</b>
+          </span>
+          <br>
+          <br>
+          <span>Director:
+            <b>Nellie Marshall</b>
+          </span>
+          <br>
+          <br>
+          <span>Aired On:
+            <b>May 13, 2018 Available Until: Jun. 13, 2018</b>
+            <br>
+            <br>
+            <b>Duration</b>
+            <i>1h 39m 50s</i>
+          </span>
+
+
+        </div>
+      </div>
+    </div>
+    <!-- 
+  -->
+  </section>
+  <section id="trailer-with-video">
+
+    <div class="container">
+      <div class="video-two-container">
+
+        <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="820" height="523" poster="images/placeholder_video_2.jpg"
+          data-setup="{}">
+          <source src="video/video.mp4" type='video/mp4'>
+          <source src="video/video.webm" type='video/webm'>
+          <p class="vjs-no-js">
+            Please make sure that your browser supports HTML5 in order to view this video. ERROR CODE 1.
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+        </video>
+
+      </div>
+    </div>
+  </section>
+  <section id="recommendation">
+    <div class="container">
+      <h1 class="recommendation-h1">You may also like</h1>
+      <hr style="background: #ebba16;width: 443px;height: 2px;">
+      <br>
+      <div class="row">
+        <div class="col">
+          <img src="images/movie-cards/movie-card-1.png" alt="" class="movie-card">
+          <br>
+          <br>
+          <span class="card1-caption">Shining Mountain</span>
+        </div>
+        <div class="col">
+          <img src="images/movie-cards/movie-card-2.png" alt="" class="movie-card">
+          <br>
+          <br>
+          <span class="card2-caption">Global Resorts Network</span>
+        </div>
+        <div class="col">
+          <img src="images/movie-cards/movie-card-3.png" alt="" class="movie-card">
+          <br>
+          <br>
+          <span class="card3-caption">City Chiefs</span>
+        </div>
+        <div class="col">
+          <img src="images/movie-cards/movie-card-4.png" alt="" class="movie-card">
+          <br>
+          <br>
+          <span class="card4-caption" style="margin-left: 18px;">Hilton Head Island</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="this-footer">
+    <p>Copyright Actin Space 2018</p>
+    <p>
+      <a href="#">Back to top</a>
+    </p>
+  </footer>
+
+  <!-- VideoJS CDN -->
+  <script src="https://vjs.zencdn.net/7.0.3/video.js"></script>
+  <!-- BootStrap JS CDN's -->
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+
+  <!-- End OF Bootstrap JS CDN's -->
+</body>
+
+</html>

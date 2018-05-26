@@ -1,0 +1,10 @@
+@import "variables/variables"
+
+// Mixin Name => baseFont
+// Arguments => size, color, weight, font align
+=baseFont($baseFontSize, $baseFontColor, $baseFontWeight, $baseFontAlign)
+  font-family: $baseFont
+  font-weight: $baseFontWeight
+  color: $baseFontColor
+  font-size: $baseFontSize
+  text-align: $baseFontAlign

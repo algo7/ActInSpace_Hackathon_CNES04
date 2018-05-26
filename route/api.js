@@ -31,12 +31,14 @@ router.get('/nogeo', (req, res) => {
 
 //User Get Route
 router.get('/user', (req, res) => {
-    res.render('fgeo1', {});
+    //res.render('fgeo1', {});
+    res.sendFile("/public/user.html");
 });
 
 //Admin Get Route
 router.get('/admin', (req, res) => {
-    res.render('fgeo', {});
+    //res.render('fgeo', {});
+    res.sendFile("/public/admin/admin.html");
 });
 
 //Admin POST Route

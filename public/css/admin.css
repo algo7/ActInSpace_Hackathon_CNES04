@@ -1,0 +1,74 @@
+body, html {
+  font-family: "Raleway";
+  color: black;
+  overflow-x: hidden; }
+
+#hero {
+  background: url("../images/background.jpg") center center no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  width: 1410px;
+  height: 580px; }
+
+section#about-movie {
+  background: black;
+  width: 1410px;
+  height: 600px; }
+
+.about-movie-h1 {
+  font-family: "Raleway";
+  font-weight: medium;
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  position: relative;
+  top: 150px; }
+
+.about-movie-p {
+  font-family: "Raleway";
+  font-weight: medium;
+  color: white;
+  font-size: 20px;
+  text-align: none;
+  word-wrap: break-word;
+  margin-top: 200px; }
+
+#trailer-with-video {
+  background: url("../images/background-trailer.jpg") center center no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  width: 1410px;
+  height: 580px; }
+
+#recommendation {
+  background: black;
+  font-family: "Raleway";
+  font-weight: medium;
+  color: white;
+  font-size: 16px;
+  text-align: none;
+  padding-top: 100px;
+  padding-bottom: 100px; }
+
+.this-footer {
+  padding: 2.5rem 0;
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: 0.05rem solid #e5e5e5; }
+
+.this-footer p:last-child {
+  margin-bottom: 0; }
+
+.btn-upload-big {
+  width: 800px; }
+
+.info-t {
+  font-size: 10px;
+  margin-top: 5px;
+  font-weight: bold;
+  color: black; }
+
+/*# sourceMappingURL=admin.css.map */
