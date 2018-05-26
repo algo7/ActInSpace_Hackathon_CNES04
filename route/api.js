@@ -23,6 +23,8 @@ const DBSchema = require('../config/Schema');
 //Initiate Router
 const router = express.Router();
 
+
+
 //Misc Get Route
 router.get('/nogeo', (req, res) => {
     res.send('Sorry Mate!');
@@ -32,13 +34,13 @@ router.get('/nogeo', (req, res) => {
 //User Get Route
 router.get('/user', (req, res) => {
     //res.render('fgeo1', {});
-    res.sendFile("/public/user.html");
+    res.sendfile('../public/index');
 });
 
 //Admin Get Route
 router.get('/admin', (req, res) => {
     //res.render('fgeo', {});
-    res.sendFile("/public/admin/admin.html");
+    res.sendfile('../public/admin/index');
 });
 
 //Admin POST Route
