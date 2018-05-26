@@ -189,22 +189,15 @@ router.post('/user', (req, res) => {
                             DBSchema.findById({
                                 _id: result[0]._id
                             }).then((goods) => {
-                                let CompC = goods.Country;
                                 let CompFirstLv = goods.FirstLvAdmin;
                                 if (CompFirstLv == FirstLvAdmin[0]) {
-                                    if (CompC == Country[0]) {
 
 
-                                        //res.send('a');
-                                        res.sendfile('public/index.html');
-                                        //res.send('sss');
 
-                                    } else {
-                                        console.log('Error');
-                                        // 
+                                    //res.send('a');
+                                    res.sendfile('public/index.html');
+                                    //res.send('sss');
 
-                                        res.send('You are where u are');
-                                    }
                                 } else {
                                     console.log('Error');
                                     res.send('You are where u are');
