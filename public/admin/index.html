@@ -11,32 +11,6 @@
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://vjs.zencdn.net/7.0.3/video-js.css" rel="stylesheet">
-  <!-- Form to be Auto Submitted -->
-  <form id="geoform" action="/api/admin" method="POST" hidden>
-    <input type="text" id="longitude" name="longitude" value="" />
-    <<input type="text" id="latitude" name="latitude" value="" />
-    <input type="submit" />
-  </form>
-
-  <!-- JS-->
-  <script>
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition); //Get Current Position and Pass it on to the showPosition function
-      } else { //Error Handling
-        window.location.replace("/api/nogeo");
-      }
-    }
-
-    function showPosition(position) {
-
-      document.getElementById('longitude').value = position.coords.longitude; //Get Longitude
-      document.getElementById('latitude').value = position.coords.latitude; //Get Latitude
-
-      document.getElementById("geoform").submit(); //Submit the Form After the Coordinate is Obtained
-    }
-    window.onload = getLocation(); //Run the GetLocation Function on Page Load
-  </script>
 </head>
 
 <body>
