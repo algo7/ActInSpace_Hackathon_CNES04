@@ -185,25 +185,26 @@ router.post('/user', (req, res) => {
                         }).then((result) => {
                             //console.log(result);
                             DBSchema.findById({
-                                _id: result[0]._id
-                            }).then((goods) => {
-                                let CompFirstLv = goods.FirstLvAdmin;
-                                if (CompFirstLv == FirstLvAdmin[0]) {
+                                    _id: result[0]._id
+                                }).then((goods) => {
+                                    let CompFirstLv = goods.FirstLvAdmin;
+                                    if (CompFirstLv == FirstLvAdmin[0]) {
 
 
 
-                                    //res.send('a');
-                                    res.sendfile('public/index.html');
-                                    //res.send('sss');
+                                        //res.send('a');
+                                        res.sendfile('public/index.html');
+                                        //res.send('sss');
 
-                                } else {
+                                    } else {
+                                        console.log('Error');
+                                        res.send('You are where u are');
+                                    }
+                                })
+                                .catch((err) => {
                                     console.log('Error');
                                     res.send('You are where u are');
-                                }
-                            }).catch((err) => {
-                                console.log('Error');
-                                res.send('You are where u are');
-                            });
+                                });
                         });
                     }
                 });
