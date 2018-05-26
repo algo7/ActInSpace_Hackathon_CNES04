@@ -5,7 +5,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const request = require('request');
 const GoogleMapsAPI = require("googlemaps");
-const upload = require('express-fileupload');
+//const upload = require('express-fileupload');
 //Global Variable
 const port = 2000; //Server Port
 const Cred = require('./config/cred'); //Import Credentials
@@ -36,29 +36,29 @@ server.use(
 );
 
 //Initialize Upload Func.
-server.use(upload()); // configure middleware
+// server.use(upload()); // configure middleware
 
-server.post('/video', function (req, res) {
-    console.log(req.files);
-    if (req.files.upfile) {
-        var file = req.files.upfile,
-            name = file.name,
-            type = file.mimetype;
-        var uploadpath = __dirname + '/video/' + name;
-        file.mv(uploadpath, function (err) {
-            if (err) {
-                console.log("File Upload Failed", name, err);
-                res.send("Error Occured!")
-            } else {
-                console.log("File Uploaded", name);
-                res.send('Done! Uploading files')
-            }
-        });
-    } else {
-        res.send("No File selected !");
-        res.end();
-    };
-})
+// server.post('/video', function (req, res) {
+//     console.log(req.files);
+//     if (req.files.upfile) {
+//         var file = req.files.upfile,
+//             name = file.name,
+//             type = file.mimetype;
+//         var uploadpath = __dirname + '/video/' + name;
+//         file.mv(uploadpath, function (err) {
+//             if (err) {
+//                 console.log("File Upload Failed", name, err);
+//                 res.send("Error Occured!")
+//             } else {
+//                 console.log("File Uploaded", name);
+//                 res.send('Done! Uploading files')
+//             }
+//         });
+//     } else {
+//         res.send("No File selected !");
+//         res.end();
+//     };
+// })
 //Load Routes
 const api = require('./route/api');
 
@@ -68,7 +68,7 @@ server.use('/api', api);
 
 //Root Route
 server.get('/', (req, res) => {
-    res.redirect('/api/admin');
+    res.redirect('/api/user');
 });
 
 //GET Error Handling

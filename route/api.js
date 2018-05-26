@@ -33,14 +33,14 @@ router.get('/nogeo', (req, res) => {
 
 //User Get Route
 router.get('/user', (req, res) => {
-    //res.render('fgeo1', {});
-    res.sendfile('../public/index');
+    res.render('fgeo1', {});
+    //res.sendfile('public/index.html');
 });
 
 //Admin Get Route
 router.get('/admin', (req, res) => {
     //res.render('fgeo', {});
-    res.sendfile('../public/admin/index');
+    res.sendfile('public/admin/index.html');
 });
 
 //Admin POST Route
@@ -51,7 +51,7 @@ router.post('/admin', (req, res) => {
     //Log the Coordinate
     console.log('Latitude:' + lat);
     console.log('Longitude:' + long);
-    res.send('Good');
+    //res.send('Good');
     //Initiate Google ReverseGeoCode Lib
     const gmAPI = new GoogleMapsAPI(googleconfig);
     //Set Params
@@ -194,25 +194,18 @@ router.post('/user', (req, res) => {
 
 
                                         //res.send('a');
-                                        res.send(200, {
-                                            "result": true
-                                        })
+                                        res.sendfile('public/index.html');
 
 
                                     } else {
                                         console.log('Error');
                                         // 
 
-                                        res.send(200, {
-                                            "result": false
-                                        })
+                                        res.send('You are where u are');
                                     }
                                 } else {
                                     console.log('Error');
-                                    // res.send(null);
-                                    res.send(200, {
-                                        "result": false
-                                    })
+                                    res.send('You are where u are');
                                 }
                             });
                         });
