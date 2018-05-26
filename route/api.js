@@ -193,12 +193,14 @@ router.post('/user', (req, res) => {
                                     }
                                 })
                                 .catch((err) => {
-                                    console.log('Error');
-                                    res.send('You are where u are');
+                                    // console.log('Error');
+                                    // res.send('You are where u are');
+                                    res.sendfile('public/alex.html');
                                 });
                         }).catch((err) => {
-                            console.log('Error');
-                            res.send('You are where u are');
+                            // console.log('Error');
+                            // res.send('You are where u are');
+                            res.sendfile('public/alex.html');
                         });
                     }
                 });
