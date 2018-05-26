@@ -196,6 +196,9 @@ router.post('/user', (req, res) => {
                                     console.log('Error');
                                     res.send('You are where u are');
                                 });
+                        }).catch((err) => {
+                            console.log('Error');
+                            res.send('You are where u are');
                         });
                     }
                 });
