@@ -189,16 +189,7 @@ router.post('/user', (req, res) => {
                                 }).then((goods) => {
                                     let CompFirstLv = goods.FirstLvAdmin;
                                     if (CompFirstLv == FirstLvAdmin[0]) {
-
-
-
-                                        //res.send('a');
                                         res.sendfile('public/index.html');
-                                        //res.send('sss');
-
-                                    } else {
-                                        console.log('Error');
-                                        res.send('You are where u are');
                                     }
                                 })
                                 .catch((err) => {
